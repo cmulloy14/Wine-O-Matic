@@ -8,11 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		FC70DA3121B78B6700843F3F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC70DA3021B78B6700843F3F /* AppDelegate.swift */; };
-		FC70DA3321B78B6700843F3F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC70DA3221B78B6700843F3F /* ViewController.swift */; };
 		FC70DA3621B78B6700843F3F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC70DA3421B78B6700843F3F /* Main.storyboard */; };
 		FC70DA3821B78B6900843F3F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC70DA3721B78B6900843F3F /* Assets.xcassets */; };
 		FC70DA3B21B78B6900843F3F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC70DA3921B78B6900843F3F /* LaunchScreen.storyboard */; };
 		FC70DA4621B78B6900843F3F /* Wine_O_MaticTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC70DA4521B78B6900843F3F /* Wine_O_MaticTests.swift */; };
+		FC73514921B792D300565919 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC73514821B792D300565919 /* Product.swift */; };
+		FC73514D21B79A0E00565919 /* ProductGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC73514C21B79A0E00565919 /* ProductGroup.swift */; };
+		FC73515121B79B4100565919 /* ProductAisle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC73515021B79B4100565919 /* ProductAisle.swift */; };
+		FCBA935821B8465900FC0022 /* ProductAisleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCBA935721B8465900FC0022 /* ProductAisleViewController.swift */; };
+		FCBA935B21B8493700FC0022 /* ProductProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCBA935A21B8493700FC0022 /* ProductProvider.swift */; };
+		FCBA935D21B8516700FC0022 /* ProductAsset.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCBA935C21B8516700FC0022 /* ProductAsset.swift */; };
+		FCBA935F21B852A200FC0022 /* ProductDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCBA935E21B852A200FC0022 /* ProductDetailViewController.swift */; };
+		FCBA936221B85FD500FC0022 /* ProductAisleParsingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCBA936121B85FD500FC0022 /* ProductAisleParsingTests.swift */; };
+		FCBA936421B8644400FC0022 /* aisle.json in Resources */ = {isa = PBXBuildFile; fileRef = FCBA936321B8644400FC0022 /* aisle.json */; };
+		FCBA936521B8695600FC0022 /* aisle.json in Resources */ = {isa = PBXBuildFile; fileRef = FCBA936321B8644400FC0022 /* aisle.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,7 +37,6 @@
 /* Begin PBXFileReference section */
 		FC70DA2D21B78B6700843F3F /* Wine-O-Matic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wine-O-Matic.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC70DA3021B78B6700843F3F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		FC70DA3221B78B6700843F3F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		FC70DA3521B78B6700843F3F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FC70DA3721B78B6900843F3F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FC70DA3A21B78B6900843F3F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -36,6 +44,15 @@
 		FC70DA4121B78B6900843F3F /* Wine-O-MaticTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Wine-O-MaticTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC70DA4521B78B6900843F3F /* Wine_O_MaticTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wine_O_MaticTests.swift; sourceTree = "<group>"; };
 		FC70DA4721B78B6900843F3F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FC73514821B792D300565919 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
+		FC73514C21B79A0E00565919 /* ProductGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductGroup.swift; sourceTree = "<group>"; };
+		FC73515021B79B4100565919 /* ProductAisle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductAisle.swift; sourceTree = "<group>"; };
+		FCBA935721B8465900FC0022 /* ProductAisleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductAisleViewController.swift; sourceTree = "<group>"; };
+		FCBA935A21B8493700FC0022 /* ProductProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductProvider.swift; sourceTree = "<group>"; };
+		FCBA935C21B8516700FC0022 /* ProductAsset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductAsset.swift; sourceTree = "<group>"; };
+		FCBA935E21B852A200FC0022 /* ProductDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailViewController.swift; sourceTree = "<group>"; };
+		FCBA936121B85FD500FC0022 /* ProductAisleParsingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductAisleParsingTests.swift; sourceTree = "<group>"; };
+		FCBA936321B8644400FC0022 /* aisle.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = aisle.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,12 +94,14 @@
 		FC70DA2F21B78B6700843F3F /* Wine-O-Matic */ = {
 			isa = PBXGroup;
 			children = (
-				FC70DA3021B78B6700843F3F /* AppDelegate.swift */,
-				FC70DA3221B78B6700843F3F /* ViewController.swift */,
-				FC70DA3421B78B6700843F3F /* Main.storyboard */,
-				FC70DA3721B78B6900843F3F /* Assets.xcassets */,
-				FC70DA3921B78B6900843F3F /* LaunchScreen.storyboard */,
 				FC70DA3C21B78B6900843F3F /* Info.plist */,
+				FCBA936621B86DC700FC0022 /* Resources */,
+				FCBA936021B85A2600FC0022 /* ViewControllers */,
+				FCBA935921B8492300FC0022 /* Provider */,
+				FC73514721B7929C00565919 /* Data Models */,
+				FC70DA3021B78B6700843F3F /* AppDelegate.swift */,
+				FC70DA3421B78B6700843F3F /* Main.storyboard */,
+				FC70DA3921B78B6900843F3F /* LaunchScreen.storyboard */,
 			);
 			path = "Wine-O-Matic";
 			sourceTree = "<group>";
@@ -92,8 +111,54 @@
 			children = (
 				FC70DA4521B78B6900843F3F /* Wine_O_MaticTests.swift */,
 				FC70DA4721B78B6900843F3F /* Info.plist */,
+				FCBA936121B85FD500FC0022 /* ProductAisleParsingTests.swift */,
 			);
 			path = "Wine-O-MaticTests";
+			sourceTree = "<group>";
+		};
+		FC73514721B7929C00565919 /* Data Models */ = {
+			isa = PBXGroup;
+			children = (
+				FC73514821B792D300565919 /* Product.swift */,
+				FC73514C21B79A0E00565919 /* ProductGroup.swift */,
+				FC73515021B79B4100565919 /* ProductAisle.swift */,
+				FCBA935C21B8516700FC0022 /* ProductAsset.swift */,
+			);
+			path = "Data Models";
+			sourceTree = "<group>";
+		};
+		FCBA935921B8492300FC0022 /* Provider */ = {
+			isa = PBXGroup;
+			children = (
+				FCBA935A21B8493700FC0022 /* ProductProvider.swift */,
+			);
+			path = Provider;
+			sourceTree = "<group>";
+		};
+		FCBA936021B85A2600FC0022 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				FCBA935E21B852A200FC0022 /* ProductDetailViewController.swift */,
+				FCBA935721B8465900FC0022 /* ProductAisleViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		FCBA936621B86DC700FC0022 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				FCBA936721B86DD900FC0022 /* JSON */,
+				FC70DA3721B78B6900843F3F /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		FCBA936721B86DD900FC0022 /* JSON */ = {
+			isa = PBXGroup;
+			children = (
+				FCBA936321B8644400FC0022 /* aisle.json */,
+			);
+			path = JSON;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -177,6 +242,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FCBA936421B8644400FC0022 /* aisle.json in Resources */,
 				FC70DA3B21B78B6900843F3F /* LaunchScreen.storyboard in Resources */,
 				FC70DA3821B78B6900843F3F /* Assets.xcassets in Resources */,
 				FC70DA3621B78B6700843F3F /* Main.storyboard in Resources */,
@@ -187,6 +253,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FCBA936521B8695600FC0022 /* aisle.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -197,8 +264,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FC70DA3321B78B6700843F3F /* ViewController.swift in Sources */,
+				FCBA935821B8465900FC0022 /* ProductAisleViewController.swift in Sources */,
+				FCBA935D21B8516700FC0022 /* ProductAsset.swift in Sources */,
+				FCBA935F21B852A200FC0022 /* ProductDetailViewController.swift in Sources */,
+				FC73515121B79B4100565919 /* ProductAisle.swift in Sources */,
+				FCBA935B21B8493700FC0022 /* ProductProvider.swift in Sources */,
 				FC70DA3121B78B6700843F3F /* AppDelegate.swift in Sources */,
+				FC73514921B792D300565919 /* Product.swift in Sources */,
+				FC73514D21B79A0E00565919 /* ProductGroup.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -207,6 +280,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FC70DA4621B78B6900843F3F /* Wine_O_MaticTests.swift in Sources */,
+				FCBA936221B85FD500FC0022 /* ProductAisleParsingTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -361,7 +435,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 482S22VVQV;
+				DEVELOPMENT_TEAM = C7S2CV33MM;
 				INFOPLIST_FILE = "Wine-O-Matic/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -379,7 +453,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 482S22VVQV;
+				DEVELOPMENT_TEAM = C7S2CV33MM;
 				INFOPLIST_FILE = "Wine-O-Matic/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
