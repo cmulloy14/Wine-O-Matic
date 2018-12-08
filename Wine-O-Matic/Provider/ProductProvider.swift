@@ -23,11 +23,40 @@ struct ProductProvider {
         case noData
         case failedJsonParsing
         case failedImageCreation
+
+        var localizedDescription: String {
+            switch self {
+            case .invalidURL:
+                return NSLocalizedString("Network error, please retry", comment: "")
+            case .noData:
+                return NSLocalizedString("Request returned no data, please retry", comment: "")
+            case .failedJsonParsing:
+                return NSLocalizedString("Could not parse data, please retry", comment: "")
+            case .failedImageCreation:
+                 return NSLocalizedString("Could not retreive image, please retry", comment: "")
+            }
+        }
     }
 
 
     // Perform a GET request for Foxtrot's wine Aisle
     static func getAisle(completion: @escaping (ProductAisle?, Error?) -> Void ) {
+
+        guard let fileURL = Bundle.main.url(forResource: "aisle", withExtension: "json"), let data = try? Data(contentsOf: fileURL) else {
+            completion(nil, ProductProviderError.noData)
+            return
+        }
+
+        do {
+            let aisle = try parseAisleData(data: data)
+            completion(aisle, nil)
+        }
+
+        catch {
+            completion(nil, error)
+        }
+
+        /*
         guard let url = ProductProviderEndpoint.getAisle.url else {
             completion(nil, ProductProviderError.invalidURL)
             return
@@ -54,6 +83,7 @@ struct ProductProvider {
             }
         }
         task.resume()
+ */
     }
 
     static func getImagesForAsset(_ asset: ProductAsset, completion: @escaping (UIImage?, Error?) -> Void) {

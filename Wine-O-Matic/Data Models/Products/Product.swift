@@ -11,8 +11,12 @@ import Foundation
 struct Product: Decodable {
 
     let title: String
+    let subtitle: String
+    let blurb: String
     let description: String
+    let unitPrice: String
 
+    let id: Int
     let assets: [ProductAsset]
     
 }

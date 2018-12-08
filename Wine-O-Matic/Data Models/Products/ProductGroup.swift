@@ -11,6 +11,10 @@ import Foundation
 struct ProductGroup: Decodable {
 
     let name: String
-    let products: [Product]
+    var products: [Product]
 
+    init(name: String, products: [Product]) {
+        self.name = name
+        self.products = products
+    }
 }

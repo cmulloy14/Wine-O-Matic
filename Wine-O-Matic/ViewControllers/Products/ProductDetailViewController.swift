@@ -15,6 +15,7 @@ class ProductDetailViewController: UIViewController {
     @IBOutlet weak var productImageView: UIImageView!
     @IBOutlet weak var productDescriptionTextView: UITextView!
 
+    // MARK: View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -26,14 +27,13 @@ class ProductDetailViewController: UIViewController {
         }
 
         ProductProvider.getImagesForAsset(asset) { (image, error) in
-            guard error == nil else {
-                print(error!)
+            if let error = error {
+                self.showAlertForError(error)
                 return
             }
 
             guard let image = image else {
-                // TODO: Handle Error
-                print("No image")
+                self.showAlertForError(ProductProvider.ProductProviderError.failedImageCreation)
                 return
             }
 
