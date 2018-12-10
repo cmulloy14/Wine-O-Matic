@@ -35,6 +35,7 @@ class ProductAisleParsingTests: XCTestCase {
         do {
             let aisle = try ProductProvider.parseAisleData(data: aisleData)
 
+            XCTAssertEqual("Red Wine", aisle.title)
             XCTAssertFalse(aisle.groups.isEmpty, "Groups in Aisle should not be empty")
 
             for group in aisle.groups {

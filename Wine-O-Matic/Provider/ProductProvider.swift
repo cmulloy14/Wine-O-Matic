@@ -39,30 +39,22 @@ struct ProductProvider {
     }
 
 
-    // Perform a GET request for Foxtrot's wine Aisle
+    // Perform a GET request for Foxtrot's Wine Aisle
     static func getAisle(completion: @escaping (ProductAisle?, Error?) -> Void ) {
 
-        guard let fileURL = Bundle.main.url(forResource: "aisle", withExtension: "json"), let data = try? Data(contentsOf: fileURL) else {
-            completion(nil, ProductProviderError.noData)
-            return
-        }
-
-        do {
-            let aisle = try parseAisleData(data: data)
-            completion(aisle, nil)
-        }
-
-        catch {
-            completion(nil, error)
-        }
-
-        /*
         guard let url = ProductProviderEndpoint.getAisle.url else {
             completion(nil, ProductProviderError.invalidURL)
             return
         }
 
+        DispatchQueue.main.async {
+            UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        }
+        
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+            DispatchQueue.main.async {
+                UIApplication.shared.isNetworkActivityIndicatorVisible = false
+            }
             guard error == nil else {
                 completion(nil, error!)
                 return
@@ -83,7 +75,7 @@ struct ProductProvider {
             }
         }
         task.resume()
- */
+
     }
 
     static func getImagesForAsset(_ asset: ProductAsset, completion: @escaping (UIImage?, Error?) -> Void) {
@@ -92,7 +84,14 @@ struct ProductProvider {
             return
         }
 
+        DispatchQueue.main.async {
+            UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        }
+        
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+            DispatchQueue.main.async {
+                UIApplication.shared.isNetworkActivityIndicatorVisible = false
+            }
             guard error == nil else {
                 completion(nil, error!)
                 return

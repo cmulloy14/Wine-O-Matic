@@ -9,5 +9,6 @@
 import Foundation
 
 struct ProductAisle: Decodable {
+    let title: String
     let groups: [ProductGroup]
 }

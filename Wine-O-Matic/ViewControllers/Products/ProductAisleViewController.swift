@@ -10,12 +10,31 @@ import UIKit
 
 class ProductAisleViewController: UIViewController {
 
+    // MARK: - IBOutlets
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
 
-    var groups = [ProductGroup]()
+    @IBOutlet weak var wineTypeSelectionButton: UIButton!
+    @IBOutlet weak var aisleLoadingIndicator: UIActivityIndicatorView!
 
+    @IBOutlet weak var selectedTypeView: UIView!
+    @IBOutlet weak var selectedTypeLabel: UILabel!
+
+
+    //MARK: - Instance Variables
+    var groups = [ProductGroup]()
     var filterString = ""
+    var selectedType: String? {
+        didSet {
+            selectedTypeView.isHidden = selectedType == nil
+            selectedTypeLabel.text = selectedType
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+    }
+
+    // MARK: - Computed Variables
     var filteredGroups: [ProductGroup] {
         guard !filterString.isEmpty else {
             return self.groups
@@ -37,33 +56,34 @@ class ProductAisleViewController: UIViewController {
     }
 
     var displayGroups: [ProductGroup] {
-        return filterString.isEmpty ? ([favoriteGroup] + groups) : filteredGroups
+        let groups =  filterString.isEmpty ? ([favoriteGroup] + self.groups) : filteredGroups
+
+        if let selectedType = selectedType {
+            return groups.filter { $0.name == selectedType }
+        }
+
+        return groups
     }
 
 
-    // MARK: View Lifecycle
+    // MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        ProductProvider.getAisle { (aisle, error) in
-            if let error = error {
-                self.showAlertForError(error)
-                return
-            }
-
-            guard let aisle = aisle else {
-                self.showAlertForError(ProductProvider.ProductProviderError.noData)
-                return
-            }
-
-            self.groups = aisle.groups
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-        }
+        loadAisle()
     }
 
+    @IBAction func removeSelectedType(_ sender: Any) {
+        selectedType = nil
+    }
+
+    //MARK - Overriden View Controller methods
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+
+        if let typeSelectionVC = segue.destination as? ProductTypeSelectionTableViewController {
+            typeSelectionVC.types = groups.map { $0.name }
+            typeSelectionVC.typeSelectionDelegate = self
+        }
+
         guard let selectedIndexPath = tableView.indexPathForSelectedRow, let detailVC = segue.destination as? ProductDetailViewController else {
             return
         }
@@ -71,6 +91,44 @@ class ProductAisleViewController: UIViewController {
         detailVC.product = productAtIndexPath(selectedIndexPath)
     }
 
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
+    }
+
+    // MARK: - Loading methods
+    private func loadAisle() {
+        DispatchQueue.main.async {
+            self.aisleLoadingIndicator.startAnimating()
+        }
+
+        ProductProvider.getAisle { [weak self] (aisle, error) in
+            DispatchQueue.main.async {
+                self?.aisleLoadingIndicator.stopAnimating()
+                self?.tableView.isHidden = false
+            }
+
+            guard error == nil else {
+                self?.showAlertForError(error!)
+                return
+            }
+
+            guard let aisle = aisle else {
+                self?.showAlertForError(ProductProvider.ProductProviderError.noData)
+                return
+            }
+
+            self?.groups = aisle.groups
+
+
+            DispatchQueue.main.async {
+                self?.title = aisle.title
+                self?.wineTypeSelectionButton.isEnabled = true
+                self?.tableView.reloadData()
+            }
+        }
+    }
+
+    // MARK: - Helper Methods
     private func productAtIndexPath(_ indexPath: IndexPath) -> Product? {
         return displayGroups[indexPath.section].products[indexPath.row]
     }
@@ -124,6 +182,7 @@ extension ProductAisleViewController: UITableViewDataSource {
 // MARK: - TableView Delegate
 extension ProductAisleViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.view.endEditing(true)
         performSegue(withIdentifier: "showProductDetail", sender: self)
     }
 
@@ -134,7 +193,9 @@ extension ProductAisleViewController: UITableViewDelegate {
         let isFavorite = ProductFavoritesManager.favoritesContainsProduct(product)
 
         let style: UITableViewRowAction.Style = isFavorite ? .destructive : .default
-        let title = isFavorite ? NSLocalizedString("Remove from Favorites", comment: "") : NSLocalizedString("Add to Favorites", comment: "")
+        let title = isFavorite ? NSLocalizedString("Remove", comment: "") : NSLocalizedString("Favorite", comment: "")
+        let backgroundColor = isFavorite ? UIColor.red : UIColor(red: 53/255, green: 196/225, blue: 120/225, alpha: 1)
+
         let action = UITableViewRowAction(style: style, title: title) { (action, indexPath) in
             do {
                 try ProductFavoritesManager.toggleFavorite(product: product)
@@ -148,6 +209,20 @@ extension ProductAisleViewController: UITableViewDelegate {
             }
         }
 
+        action.backgroundColor = backgroundColor
         return [action]
+    }
+}
+
+//MARK: - Type selection delegate
+extension ProductAisleViewController: ProductTypeSelectionDelegate {
+    func didSelectType(_ type: String) {
+        guard selectedType != type else {
+            return
+        }
+
+        selectedType = type
+
+
     }
 }

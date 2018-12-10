@@ -11,7 +11,6 @@
 		FC70DA3621B78B6700843F3F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC70DA3421B78B6700843F3F /* Main.storyboard */; };
 		FC70DA3821B78B6900843F3F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC70DA3721B78B6900843F3F /* Assets.xcassets */; };
 		FC70DA3B21B78B6900843F3F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC70DA3921B78B6900843F3F /* LaunchScreen.storyboard */; };
-		FC70DA4621B78B6900843F3F /* Wine_O_MaticTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC70DA4521B78B6900843F3F /* Wine_O_MaticTests.swift */; };
 		FC73514921B792D300565919 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC73514821B792D300565919 /* Product.swift */; };
 		FC73514D21B79A0E00565919 /* ProductGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC73514C21B79A0E00565919 /* ProductGroup.swift */; };
 		FC73515121B79B4100565919 /* ProductAisle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC73515021B79B4100565919 /* ProductAisle.swift */; };
@@ -25,6 +24,7 @@
 		FCBA936921B8EB7200FC0022 /* ViewController+ErrorHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCBA936821B8EB7200FC0022 /* ViewController+ErrorHandling.swift */; };
 		FCEC3EB521BB94CE00026274 /* UILabel+BoldedSubstring.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCEC3EB421BB94CE00026274 /* UILabel+BoldedSubstring.swift */; };
 		FCEC3EB921BB960400026274 /* ProductFavoritesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCEC3EB821BB960400026274 /* ProductFavoritesManager.swift */; };
+		FCEC3EC421BE3E9800026274 /* ProductTypeSelectionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCEC3EC321BE3E9800026274 /* ProductTypeSelectionTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,7 +45,6 @@
 		FC70DA3A21B78B6900843F3F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FC70DA3C21B78B6900843F3F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FC70DA4121B78B6900843F3F /* Wine-O-MaticTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Wine-O-MaticTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		FC70DA4521B78B6900843F3F /* Wine_O_MaticTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wine_O_MaticTests.swift; sourceTree = "<group>"; };
 		FC70DA4721B78B6900843F3F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FC73514821B792D300565919 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		FC73514C21B79A0E00565919 /* ProductGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductGroup.swift; sourceTree = "<group>"; };
@@ -59,6 +58,7 @@
 		FCBA936821B8EB7200FC0022 /* ViewController+ErrorHandling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+ErrorHandling.swift"; sourceTree = "<group>"; };
 		FCEC3EB421BB94CE00026274 /* UILabel+BoldedSubstring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+BoldedSubstring.swift"; sourceTree = "<group>"; };
 		FCEC3EB821BB960400026274 /* ProductFavoritesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductFavoritesManager.swift; sourceTree = "<group>"; };
+		FCEC3EC321BE3E9800026274 /* ProductTypeSelectionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductTypeSelectionTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,7 +117,6 @@
 		FC70DA4421B78B6900843F3F /* Wine-O-MaticTests */ = {
 			isa = PBXGroup;
 			children = (
-				FC70DA4521B78B6900843F3F /* Wine_O_MaticTests.swift */,
 				FC70DA4721B78B6900843F3F /* Info.plist */,
 				FCBA936121B85FD500FC0022 /* ProductAisleParsingTests.swift */,
 			);
@@ -143,6 +142,7 @@
 		FCBA936021B85A2600FC0022 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				FCEC3EBE21BE3C5200026274 /* Type Selection */,
 				FCEC3EBB21BBAA1100026274 /* Products */,
 			);
 			path = ViewControllers;
@@ -200,6 +200,14 @@
 				FCBA935C21B8516700FC0022 /* ProductAsset.swift */,
 			);
 			path = Products;
+			sourceTree = "<group>";
+		};
+		FCEC3EBE21BE3C5200026274 /* Type Selection */ = {
+			isa = PBXGroup;
+			children = (
+				FCEC3EC321BE3E9800026274 /* ProductTypeSelectionTableViewController.swift */,
+			);
+			path = "Type Selection";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -305,6 +313,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FCEC3EC421BE3E9800026274 /* ProductTypeSelectionTableViewController.swift in Sources */,
 				FCBA935821B8465900FC0022 /* ProductAisleViewController.swift in Sources */,
 				FCBA935D21B8516700FC0022 /* ProductAsset.swift in Sources */,
 				FCBA935F21B852A200FC0022 /* ProductDetailViewController.swift in Sources */,
@@ -323,7 +332,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FC70DA4621B78B6900843F3F /* Wine_O_MaticTests.swift in Sources */,
 				FCBA936221B85FD500FC0022 /* ProductAisleParsingTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
