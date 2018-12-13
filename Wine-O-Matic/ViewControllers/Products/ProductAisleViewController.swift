@@ -12,7 +12,7 @@ class ProductAisleViewController: UIViewController {
 
     // MARK: - IBOutlets
     @IBOutlet weak var searchBar: UISearchBar!
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var collectionView: UICollectionView!
 
     @IBOutlet weak var wineTypeSelectionButton: UIButton!
     @IBOutlet weak var aisleLoadingIndicator: UIActivityIndicatorView!
@@ -29,7 +29,7 @@ class ProductAisleViewController: UIViewController {
             selectedTypeView.isHidden = selectedType == nil
             selectedTypeLabel.text = selectedType
             DispatchQueue.main.async {
-                self.tableView.reloadData()
+                self.collectionView.reloadData()
             }
         }
     }
@@ -69,12 +69,21 @@ class ProductAisleViewController: UIViewController {
     // MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        (collectionView.collectionViewLayout as! UICollectionViewFlowLayout).sectionHeadersPinToVisibleBounds = true
+         NotificationCenter.default.addObserver(self, selector: #selector(favoriteChanged), name: .favoriteChanged, object: nil)
+
         loadAisle()
     }
 
     @IBAction func removeSelectedType(_ sender: Any) {
         selectedType = nil
     }
+
+    @objc func favoriteChanged() {
+        collectionView.reloadData()
+    }
+
 
     //MARK - Overriden View Controller methods
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -84,10 +93,10 @@ class ProductAisleViewController: UIViewController {
             typeSelectionVC.typeSelectionDelegate = self
         }
 
-        guard let selectedIndexPath = tableView.indexPathForSelectedRow, let detailVC = segue.destination as? ProductDetailViewController else {
+        guard let selectedIndexPath = collectionView.indexPathsForSelectedItems?.first, let detailVC = segue.destination as? ProductDetailViewController else {
             return
         }
-        tableView.deselectRow(at: selectedIndexPath, animated: true)
+        collectionView.deselectItem(at: selectedIndexPath, animated: false)
         detailVC.product = productAtIndexPath(selectedIndexPath)
     }
 
@@ -101,10 +110,10 @@ class ProductAisleViewController: UIViewController {
             self.aisleLoadingIndicator.startAnimating()
         }
 
-        ProductProvider.getAisle { [weak self] (aisle, error) in
+        ProductProvider.getAisle(fromLocal: true) { [weak self] (aisle, error) in
             DispatchQueue.main.async {
                 self?.aisleLoadingIndicator.stopAnimating()
-                self?.tableView.isHidden = false
+                self?.collectionView.isHidden = false
             }
 
             guard error == nil else {
@@ -119,11 +128,10 @@ class ProductAisleViewController: UIViewController {
 
             self?.groups = aisle.groups
 
-
             DispatchQueue.main.async {
                 self?.title = aisle.title
                 self?.wineTypeSelectionButton.isEnabled = true
-                self?.tableView.reloadData()
+                self?.collectionView.reloadData()
             }
         }
     }
@@ -141,7 +149,7 @@ extension ProductAisleViewController: UISearchBarDelegate {
         filterString = searchText
 
         DispatchQueue.main.async {
-            self.tableView.reloadData()
+            self.collectionView.reloadData()
         }
     }
 
@@ -155,64 +163,85 @@ extension ProductAisleViewController: UISearchBarDelegate {
 
 }
 
-// MARK: - TableView Datasource
-extension ProductAisleViewController: UITableViewDataSource {
+//MARK: - Collection view DataSource
+extension ProductAisleViewController: UICollectionViewDelegate {
 
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return displayGroups[section].products.isEmpty ? nil : displayGroups[section].name
-    }
-
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return displayGroups.count
-    }
-
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return displayGroups[section].products.count
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ProductCell", for: indexPath)
-        cell.textLabel?.text = productAtIndexPath(indexPath)?.title ?? ""
-        cell.textLabel?.boldedSubstring(filterString)
-
-        return cell
-    }
-}
-
-// MARK: - TableView Delegate
-extension ProductAisleViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self.view.endEditing(true)
         performSegue(withIdentifier: "showProductDetail", sender: self)
     }
+}
 
-    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        guard let product = self.productAtIndexPath(indexPath) else {
-            return nil
+extension ProductAisleViewController: UICollectionViewDataSource {
+
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+
+        if displayGroups[indexPath.section].products.isEmpty {
+            return UICollectionReusableView.init()
         }
-        let isFavorite = ProductFavoritesManager.favoritesContainsProduct(product)
 
-        let style: UITableViewRowAction.Style = isFavorite ? .destructive : .default
-        let title = isFavorite ? NSLocalizedString("Remove", comment: "") : NSLocalizedString("Favorite", comment: "")
-        let backgroundColor = isFavorite ? UIColor.red : UIColor(red: 53/255, green: 196/225, blue: 120/225, alpha: 1)
+        let sectionHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "SectionHeader", for: indexPath) as! ProductSectionHeaderView
 
-        let action = UITableViewRowAction(style: style, title: title) { (action, indexPath) in
-            do {
-                try ProductFavoritesManager.toggleFavorite(product: product)
+        sectionHeader.headerLabel.text = displayGroups[indexPath.section].name
+
+        return sectionHeader
+    }
+
+
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return displayGroups.count
+    }
+
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return displayGroups[section].products.count
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductCell", for: indexPath) as! ProductCollectionViewCell
+
+        guard let product = productAtIndexPath(indexPath), let asset = product.assets.first else {
+            return cell
+        }
+        cell.titleLabel.text = product.title
+
+        ProductProvider.getImagesForAsset(asset) { [weak self] (image, error) in
+
+            guard error == nil else {
+                self?.showAlertForError(error!)
+                return
             }
-            catch {
-                self.showAlertForError(error)
+
+            guard let image = image else {
+                self?.showAlertForError(ProductProvider.ProductProviderError.failedImageCreation)
+                return
             }
 
             DispatchQueue.main.async {
-                self.tableView.reloadData()
+                cell.imageView.image = image
             }
         }
+        return cell
+    }
 
-        action.backgroundColor = backgroundColor
-        return [action]
+
+}
+
+extension ProductAisleViewController: UICollectionViewDelegateFlowLayout {
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return displayGroups[section].products.isEmpty ? CGSize.zero : CGSize(width: collectionView.frame.width, height: 35)
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        if displayGroups[section].products.isEmpty {
+            return UIEdgeInsets(top: CGFloat.leastNonzeroMagnitude, left: CGFloat.leastNonzeroMagnitude, bottom: CGFloat.leastNonzeroMagnitude, right: CGFloat.leastNonzeroMagnitude)
+        }
+        else {
+            return UIEdgeInsets(top: 10, left: 35, bottom: 10, right: 35)
+        }
     }
 }
+
 
 //MARK: - Type selection delegate
 extension ProductAisleViewController: ProductTypeSelectionDelegate {
@@ -222,7 +251,5 @@ extension ProductAisleViewController: ProductTypeSelectionDelegate {
         }
 
         selectedType = type
-
-
     }
 }

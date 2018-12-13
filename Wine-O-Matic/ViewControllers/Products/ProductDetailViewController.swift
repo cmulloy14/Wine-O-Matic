@@ -23,18 +23,26 @@ class ProductDetailViewController: UIViewController {
     @IBOutlet weak var noImageLabel: UILabel!
     @IBOutlet weak var imageActivityIndicator: UIActivityIndicatorView!
 
+    @IBOutlet weak var favoritesButton: UIButton!
+
     // MARK: View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
         title = product.title
 
         blurbLabel.text = product.blurb
         priceLabel.text = "$\(product.unitPrice)"
         productDescriptionTextView.text = product.description
 
+        configureFavoriteButton()
+        NotificationCenter.default.addObserver(self, selector: #selector(favoriteChanged), name: .favoriteChanged, object: nil)
+        
         loadImage()
+    }
+
+    @objc func favoriteChanged() {
+        configureFavoriteButton()
     }
 
     // MARK: - Loading methods
@@ -68,9 +76,27 @@ class ProductDetailViewController: UIViewController {
         }
     }
 
+    @IBAction func toggleFavorite(_ sender: Any) {
+        do {
+            try ProductFavoritesManager.toggleFavorite(product: product)
+        }
+        catch {
+            showAlertForError(error)
+        }
+    }
+
+
     // MARK - Helper Methods
     private func handleImageError(_ error: Error) {
         noImageLabel.isHidden = false
         showAlertForError(error)
+    }
+
+    private func configureFavoriteButton() {
+        DispatchQueue.main.async {
+            let text = ProductFavoritesManager.favoritesContainsProduct(self.product) ? NSLocalizedString("Remove from Favorites", comment: "") : NSLocalizedString("Add to Favorites", comment: "")
+            self.favoritesButton.setTitle(text, for: .normal)
+        }
+
     }
 }

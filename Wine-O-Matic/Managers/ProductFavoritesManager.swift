@@ -8,6 +8,10 @@
 
 import Foundation
 
+extension Notification.Name {
+    static let favoriteChanged = Notification.Name("favoriteChanged")
+}
+
 struct ProductFavoritesManager {
 
     enum FavoritesError: Error {
@@ -28,6 +32,7 @@ struct ProductFavoritesManager {
                 throw FavoritesError.addFailed
             }
         }
+        NotificationCenter.default.post(name: .favoriteChanged, object: nil)
     }
 
     static func favoritesContainsProduct(_ product: Product) -> Bool {

@@ -18,18 +18,18 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wine-O-Matic" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cbc-aR-yfW">
-                                <rect key="frame" x="106.5" y="487" width="162.5" height="31.5"/>
+                                <rect key="frame" x="106.5" y="453.5" width="162.5" height="31.5"/>
                                 <fontDescription key="fontDescription" type="italicSystem" pointSize="26"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wine1" translatesAutoresizingMaskIntoConstraints="NO" id="B3z-eg-oPI">
-                                <rect key="frame" x="94" y="200" width="187.5" height="267"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launchScreen" translatesAutoresizingMaskIntoConstraints="NO" id="B3z-eg-oPI">
+                                <rect key="frame" x="94" y="233.5" width="187.5" height="200"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.96078431372549022" green="0.96470588235294119" blue="0.97254901960784312" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="B3z-eg-oPI" firstAttribute="height" secondItem="Ze5-6b-2t3" secondAttribute="height" multiplier="0.4" id="9Z5-4d-XKF"/>
+                            <constraint firstItem="B3z-eg-oPI" firstAttribute="height" secondItem="Ze5-6b-2t3" secondAttribute="height" multiplier="0.3" id="9Z5-4d-XKF"/>
                             <constraint firstItem="B3z-eg-oPI" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="width" multiplier="0.5" id="Fq4-4b-Xdi"/>
                             <constraint firstItem="cbc-aR-yfW" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="WYf-mR-gjX"/>
                             <constraint firstItem="B3z-eg-oPI" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="azl-VI-XSI"/>
@@ -45,6 +45,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="wine1" width="1242" height="932"/>
+        <image name="launchScreen" width="1242" height="932"/>
     </resources>
 </document>

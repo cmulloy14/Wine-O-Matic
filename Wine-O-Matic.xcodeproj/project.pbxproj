@@ -22,6 +22,8 @@
 		FCBA936421B8644400FC0022 /* aisle.json in Resources */ = {isa = PBXBuildFile; fileRef = FCBA936321B8644400FC0022 /* aisle.json */; };
 		FCBA936521B8695600FC0022 /* aisle.json in Resources */ = {isa = PBXBuildFile; fileRef = FCBA936321B8644400FC0022 /* aisle.json */; };
 		FCBA936921B8EB7200FC0022 /* ViewController+ErrorHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCBA936821B8EB7200FC0022 /* ViewController+ErrorHandling.swift */; };
+		FCDCD7B921C073C50094D821 /* ProductCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCDCD7B821C073C50094D821 /* ProductCollectionViewCell.swift */; };
+		FCDCD7BD21C076D40094D821 /* ProductSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCDCD7BC21C076D40094D821 /* ProductSectionHeaderView.swift */; };
 		FCEC3EB521BB94CE00026274 /* UILabel+BoldedSubstring.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCEC3EB421BB94CE00026274 /* UILabel+BoldedSubstring.swift */; };
 		FCEC3EB921BB960400026274 /* ProductFavoritesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCEC3EB821BB960400026274 /* ProductFavoritesManager.swift */; };
 		FCEC3EC421BE3E9800026274 /* ProductTypeSelectionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCEC3EC321BE3E9800026274 /* ProductTypeSelectionTableViewController.swift */; };
@@ -56,6 +58,8 @@
 		FCBA936121B85FD500FC0022 /* ProductAisleParsingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductAisleParsingTests.swift; sourceTree = "<group>"; };
 		FCBA936321B8644400FC0022 /* aisle.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = aisle.json; sourceTree = "<group>"; };
 		FCBA936821B8EB7200FC0022 /* ViewController+ErrorHandling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+ErrorHandling.swift"; sourceTree = "<group>"; };
+		FCDCD7B821C073C50094D821 /* ProductCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCollectionViewCell.swift; sourceTree = "<group>"; };
+		FCDCD7BC21C076D40094D821 /* ProductSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductSectionHeaderView.swift; sourceTree = "<group>"; };
 		FCEC3EB421BB94CE00026274 /* UILabel+BoldedSubstring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+BoldedSubstring.swift"; sourceTree = "<group>"; };
 		FCEC3EB821BB960400026274 /* ProductFavoritesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductFavoritesManager.swift; sourceTree = "<group>"; };
 		FCEC3EC321BE3E9800026274 /* ProductTypeSelectionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductTypeSelectionTableViewController.swift; sourceTree = "<group>"; };
@@ -142,6 +146,7 @@
 		FCBA936021B85A2600FC0022 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				FCDCD7B721C073AC0094D821 /* Cells */,
 				FCEC3EBE21BE3C5200026274 /* Type Selection */,
 				FCEC3EBB21BBAA1100026274 /* Products */,
 			);
@@ -163,6 +168,15 @@
 				FCBA936321B8644400FC0022 /* aisle.json */,
 			);
 			path = JSON;
+			sourceTree = "<group>";
+		};
+		FCDCD7B721C073AC0094D821 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				FCDCD7B821C073C50094D821 /* ProductCollectionViewCell.swift */,
+				FCDCD7BC21C076D40094D821 /* ProductSectionHeaderView.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		FCEC3EB321BB947000026274 /* UIKit Extensions */ = {
@@ -314,11 +328,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				FCEC3EC421BE3E9800026274 /* ProductTypeSelectionTableViewController.swift in Sources */,
+				FCDCD7BD21C076D40094D821 /* ProductSectionHeaderView.swift in Sources */,
 				FCBA935821B8465900FC0022 /* ProductAisleViewController.swift in Sources */,
 				FCBA935D21B8516700FC0022 /* ProductAsset.swift in Sources */,
 				FCBA935F21B852A200FC0022 /* ProductDetailViewController.swift in Sources */,
 				FCBA936921B8EB7200FC0022 /* ViewController+ErrorHandling.swift in Sources */,
 				FCEC3EB521BB94CE00026274 /* UILabel+BoldedSubstring.swift in Sources */,
+				FCDCD7B921C073C50094D821 /* ProductCollectionViewCell.swift in Sources */,
 				FC73515121B79B4100565919 /* ProductAisle.swift in Sources */,
 				FCBA935B21B8493700FC0022 /* ProductProvider.swift in Sources */,
 				FC70DA3121B78B6700843F3F /* AppDelegate.swift in Sources */,
