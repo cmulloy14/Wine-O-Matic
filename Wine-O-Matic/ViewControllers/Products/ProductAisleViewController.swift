@@ -72,7 +72,7 @@ class ProductAisleViewController: UIViewController {
 
         (collectionView.collectionViewLayout as! UICollectionViewFlowLayout).sectionHeadersPinToVisibleBounds = true
          NotificationCenter.default.addObserver(self, selector: #selector(favoriteChanged), name: .favoriteChanged, object: nil)
-
+        //collectionView.prefetchDataSource = self
         loadAisle()
     }
 
@@ -171,6 +171,11 @@ extension ProductAisleViewController: UICollectionViewDelegate {
         performSegue(withIdentifier: "showProductDetail", sender: self)
     }
 }
+//extension ProductAisleViewController: UICollectionViewDataSourcePrefetching {
+//    func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
+//        ProductProvider.getImagesForAsset(<#T##asset: ProductAsset##ProductAsset#>, completion: <#T##(UIImage?, Error?) -> Void#>)
+//    }
+//}
 
 extension ProductAisleViewController: UICollectionViewDataSource {
 
@@ -203,6 +208,8 @@ extension ProductAisleViewController: UICollectionViewDataSource {
             return cell
         }
         cell.titleLabel.text = product.title
+        cell.titleLabel.boldedSubstring(filterString)
+
 
         ProductProvider.getImagesForAsset(asset) { [weak self] (image, error) in
 

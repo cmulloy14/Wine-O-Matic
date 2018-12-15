@@ -13,4 +13,9 @@ class ProductCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
 
+    override func prepareForReuse() {
+        imageView.image = nil
+        titleLabel.text = nil
+    }
+
 }

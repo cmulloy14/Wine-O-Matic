@@ -94,10 +94,16 @@ struct ProductProvider {
 
     }
 
+    static let imageCache = NSCache<NSString, UIImage>()
     static func getImagesForAsset(_ asset: ProductAsset, completion: @escaping (UIImage?, Error?) -> Void) {
         guard let url = URL(string: asset.url) else {
             completion(nil, ProductProviderError.invalidURL)
             return
+        }
+
+        // Check for cached image
+        if let cachedImage = imageCache.object(forKey: url.absoluteString as NSString) {
+            completion(cachedImage, nil)
         }
 
         DispatchQueue.main.async {
@@ -105,6 +111,7 @@ struct ProductProvider {
         }
         
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+            
             DispatchQueue.main.async {
                 UIApplication.shared.isNetworkActivityIndicatorVisible = false
             }
@@ -123,6 +130,7 @@ struct ProductProvider {
                 return
             }
 
+            imageCache.setObject(image, forKey: url.absoluteString as NSString)
             completion(image, nil)
         }
 
