@@ -12,6 +12,17 @@ class ProductDetailViewController: UIViewController {
 
     //MARK: - Instance Vars
     var product: Product!
+    var cart: ProductGroup! {
+        didSet {
+            cartDelegate?.updateCart(cart)
+            cartView?.number = cart.products.count
+        }
+    }
+    weak var cartDelegate: CartUpdatable?
+
+    var cartView: CartView? {
+        return navigationItem.rightBarButtonItem?.customView as? CartView
+    }
 
     // MARK: - IBOutlets
     @IBOutlet weak var productImageView: UIImageView!
@@ -24,6 +35,7 @@ class ProductDetailViewController: UIViewController {
     @IBOutlet weak var imageActivityIndicator: UIActivityIndicatorView!
 
     @IBOutlet weak var favoritesButton: UIButton!
+    @IBOutlet weak var cartButton: UIButton!
 
     // MARK: View Lifecycle
     override func viewDidLoad() {
@@ -36,9 +48,23 @@ class ProductDetailViewController: UIViewController {
         productDescriptionTextView.text = product.description
 
         configureFavoriteButton()
+        configureCartButton()
+        
         NotificationCenter.default.addObserver(self, selector: #selector(favoriteChanged), name: .favoriteChanged, object: nil)
+
+        let cartView = CartView.initFromXib(with: cart.products.count)
+        cartView.delegate = self
+
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: cartView)
         
         loadImage()
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let cartVC = segue.destination as? ProductCartTableViewController else {
+            return
+        }
+        cartVC.cart = cart
     }
 
     @objc func favoriteChanged() {
@@ -85,11 +111,26 @@ class ProductDetailViewController: UIViewController {
         }
     }
 
+    @IBAction func toggleCart(_ sender: Any) {
+        if cart.products.contains(product) {
+            cart.products.removeAll { $0 == product }
+        } else {
+            cart.products.append(product)
+        }
+        configureCartButton()
+    }
 
     // MARK - Helper Methods
     private func handleImageError(_ error: Error) {
         noImageLabel.isHidden = false
         showAlertForError(error)
+    }
+
+    private func configureCartButton() {
+        DispatchQueue.main.async {
+            let title = self.cart.products.contains(self.product) ? NSLocalizedString("Remove from Cart", comment: "") : NSLocalizedString("Add to Cart", comment: "")
+            self.cartButton.setTitle(title, for: .normal)
+        }
     }
 
     private func configureFavoriteButton() {
@@ -98,5 +139,11 @@ class ProductDetailViewController: UIViewController {
             self.favoritesButton.setTitle(text, for: .normal)
         }
 
+    }
+}
+
+extension ProductDetailViewController: CartSelectable {
+    func showCart() {
+        performSegue(withIdentifier: "showCart", sender: nil)
     }
 }

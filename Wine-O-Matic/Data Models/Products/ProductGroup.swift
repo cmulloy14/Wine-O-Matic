@@ -19,6 +19,7 @@ struct ProductGroup: Decodable {
     }
 }
 
+//Added Hashability for Set capabilities 
 extension ProductGroup: Hashable {
     static func == (lhs: ProductGroup, rhs: ProductGroup) -> Bool {
         return lhs.name == rhs.name

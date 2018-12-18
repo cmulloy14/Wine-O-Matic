@@ -22,6 +22,16 @@ class ProductAisleViewController: UIViewController {
 
     //MARK: - Instance Variables
     var groups = [ProductGroup]()
+    var cart = ProductGroup(name: NSLocalizedString("Cart", comment: ""), products: []) {
+        didSet {
+            cartView?.number = cart.products.count
+        }
+    }
+
+    var cartView: CartView? {
+        return navigationItem.rightBarButtonItem?.customView as? CartView
+    }
+
     var filterString = ""
     var selectedGroups: [ProductGroup] = [] {
         didSet {
@@ -74,12 +84,20 @@ class ProductAisleViewController: UIViewController {
          NotificationCenter.default.addObserver(self, selector: #selector(favoriteChanged), name: .favoriteChanged, object: nil)
         //collectionView.prefetchDataSource = self
         loadAisle()
+
+
+        let cartView = CartView.initFromXib(with: cart.products.count)
+        cartView.delegate = self
+
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: cartView)
+
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         view.endEditing(true)
     }
+
     @objc func favoriteChanged() {
         collectionView.reloadData()
     }
@@ -93,11 +111,19 @@ class ProductAisleViewController: UIViewController {
             typeSelectionVC.typeSelectionDelegate = self
         }
 
+
+        else if let cartVC = segue.destination as? ProductCartTableViewController {
+            cartVC.cartDelegate = self
+            cartVC.cart = cart
+        }
+
         guard let selectedIndexPath = collectionView.indexPathsForSelectedItems?.first, let detailVC = segue.destination as? ProductDetailViewController else {
             return
         }
         collectionView.deselectItem(at: selectedIndexPath, animated: false)
         detailVC.product = productAtIndexPath(selectedIndexPath)
+        detailVC.cart = cart
+        detailVC.cartDelegate = self
     }
 
     // MARK: - Loading methods
@@ -106,7 +132,7 @@ class ProductAisleViewController: UIViewController {
             self.aisleLoadingIndicator.startAnimating()
         }
 
-        ProductProvider.getAisle(fromLocal: true) { [weak self] (aisle, error) in
+        ProductProvider.getAisle { [weak self] (aisle, error) in
             DispatchQueue.main.async {
                 self?.aisleLoadingIndicator.stopAnimating()
                 self?.collectionView.isHidden = false
@@ -310,5 +336,19 @@ extension ProductAisleViewController: SelectedGroupCellRemovable {
 extension ProductAisleViewController: ProductTypeSelectionDelegate {
     func didSelectGroups(_ groups: [ProductGroup]) {
         selectedGroups = groups
+    }
+}
+
+//MARK: - Cart Updatable Delegate
+extension ProductAisleViewController: CartUpdatable {
+    func updateCart(_ cart: ProductGroup) {
+        self.cart = cart
+    }
+}
+
+//MARK: - Show Cart Delegate
+extension ProductAisleViewController: CartSelectable {
+    func showCart() {
+        performSegue(withIdentifier: "showCart", sender: nil)
     }
 }

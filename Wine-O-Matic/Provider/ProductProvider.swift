@@ -49,7 +49,9 @@ struct ProductProvider {
 
             do {
                 let aisle = try parseAisleData(data: data)
-                completion(aisle, nil)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                    completion(aisle, nil)
+                }
             }
             catch {
                 completion(nil, error)
@@ -116,12 +118,12 @@ struct ProductProvider {
                 UIApplication.shared.isNetworkActivityIndicatorVisible = false
             }
             guard error == nil else {
-                completion(nil, error!)
+                //completion(nil, error!)
                 return
             }
 
             guard let data = data else {
-                completion(nil, ProductProviderError.noData)
+                //completion(nil, ProductProviderError.noData)
                 return
             }
 

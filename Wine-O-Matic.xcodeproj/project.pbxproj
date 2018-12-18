@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		FC0B9EC621C58F7F00BBE36E /* ProductSelectionCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC0B9EC521C58F7F00BBE36E /* ProductSelectionCollectionViewController.swift */; };
 		FC0B9EC821C5F80100BBE36E /* SelectedGroupsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC0B9EC721C5F80100BBE36E /* SelectedGroupsCollectionViewCell.swift */; };
+		FC0B9ECF21C89AC100BBE36E /* ProductCartTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC0B9ECE21C89AC100BBE36E /* ProductCartTableViewController.swift */; };
+		FC0B9ED121C8B0A000BBE36E /* ProductCartTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC0B9ED021C8B0A000BBE36E /* ProductCartTableViewCell.swift */; };
+		FC0B9ED321C8BCDC00BBE36E /* UIBarButton+BadgeLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC0B9ED221C8BCDC00BBE36E /* UIBarButton+BadgeLayer.swift */; };
+		FC0B9ED621C8BEA900BBE36E /* CartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC0B9ED521C8BEA900BBE36E /* CartView.swift */; };
+		FC0B9ED821C8BEDA00BBE36E /* CartView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC0B9ED721C8BEDA00BBE36E /* CartView.xib */; };
 		FC70DA3121B78B6700843F3F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC70DA3021B78B6700843F3F /* AppDelegate.swift */; };
 		FC70DA3621B78B6700843F3F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC70DA3421B78B6700843F3F /* Main.storyboard */; };
 		FC70DA3821B78B6900843F3F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC70DA3721B78B6900843F3F /* Assets.xcassets */; };
@@ -43,6 +48,11 @@
 /* Begin PBXFileReference section */
 		FC0B9EC521C58F7F00BBE36E /* ProductSelectionCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductSelectionCollectionViewController.swift; sourceTree = "<group>"; };
 		FC0B9EC721C5F80100BBE36E /* SelectedGroupsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedGroupsCollectionViewCell.swift; sourceTree = "<group>"; };
+		FC0B9ECE21C89AC100BBE36E /* ProductCartTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCartTableViewController.swift; sourceTree = "<group>"; };
+		FC0B9ED021C8B0A000BBE36E /* ProductCartTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCartTableViewCell.swift; sourceTree = "<group>"; };
+		FC0B9ED221C8BCDC00BBE36E /* UIBarButton+BadgeLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBarButton+BadgeLayer.swift"; sourceTree = "<group>"; };
+		FC0B9ED521C8BEA900BBE36E /* CartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartView.swift; sourceTree = "<group>"; };
+		FC0B9ED721C8BEDA00BBE36E /* CartView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CartView.xib; sourceTree = "<group>"; };
 		FC70DA2D21B78B6700843F3F /* Wine-O-Matic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wine-O-Matic.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC70DA3021B78B6700843F3F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FC70DA3521B78B6700843F3F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -85,6 +95,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FC0B9ECB21C8963900BBE36E /* Cart */ = {
+			isa = PBXGroup;
+			children = (
+				FC0B9ECE21C89AC100BBE36E /* ProductCartTableViewController.swift */,
+			);
+			path = Cart;
+			sourceTree = "<group>";
+		};
+		FC0B9ED421C8BE7D00BBE36E /* Custom Views */ = {
+			isa = PBXGroup;
+			children = (
+				FC0B9ED521C8BEA900BBE36E /* CartView.swift */,
+				FC0B9ED721C8BEDA00BBE36E /* CartView.xib */,
+			);
+			path = "Custom Views";
+			sourceTree = "<group>";
+		};
 		FC70DA2421B78B6700843F3F = {
 			isa = PBXGroup;
 			children = (
@@ -114,6 +141,7 @@
 				FCBA936021B85A2600FC0022 /* ViewControllers */,
 				FCBA935921B8492300FC0022 /* Provider */,
 				FCEC3EBC21BBAA2B00026274 /* Managers */,
+				FC0B9ED421C8BE7D00BBE36E /* Custom Views */,
 				FCBA936621B86DC700FC0022 /* Resources */,
 				FCEC3EB321BB947000026274 /* UIKit Extensions */,
 			);
@@ -148,6 +176,7 @@
 		FCBA936021B85A2600FC0022 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				FC0B9ECB21C8963900BBE36E /* Cart */,
 				FCDCD7B721C073AC0094D821 /* Cells */,
 				FCEC3EBE21BE3C5200026274 /* Type Selection */,
 				FCEC3EBB21BBAA1100026274 /* Products */,
@@ -178,6 +207,7 @@
 				FCDCD7B821C073C50094D821 /* ProductCollectionViewCell.swift */,
 				FCDCD7BC21C076D40094D821 /* ProductSectionHeaderView.swift */,
 				FC0B9EC721C5F80100BBE36E /* SelectedGroupsCollectionViewCell.swift */,
+				FC0B9ED021C8B0A000BBE36E /* ProductCartTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -187,6 +217,7 @@
 			children = (
 				FCBA936821B8EB7200FC0022 /* ViewController+ErrorHandling.swift */,
 				FCEC3EB421BB94CE00026274 /* UILabel+BoldedSubstring.swift */,
+				FC0B9ED221C8BCDC00BBE36E /* UIBarButton+BadgeLayer.swift */,
 			);
 			path = "UIKit Extensions";
 			sourceTree = "<group>";
@@ -309,6 +340,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FCBA936421B8644400FC0022 /* aisle.json in Resources */,
+				FC0B9ED821C8BEDA00BBE36E /* CartView.xib in Resources */,
 				FC70DA3B21B78B6900843F3F /* LaunchScreen.storyboard in Resources */,
 				FC70DA3821B78B6900843F3F /* Assets.xcassets in Resources */,
 				FC70DA3621B78B6700843F3F /* Main.storyboard in Resources */,
@@ -331,19 +363,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				FCDCD7BD21C076D40094D821 /* ProductSectionHeaderView.swift in Sources */,
+				FC0B9ECF21C89AC100BBE36E /* ProductCartTableViewController.swift in Sources */,
 				FCBA935821B8465900FC0022 /* ProductAisleViewController.swift in Sources */,
 				FCBA935D21B8516700FC0022 /* ProductAsset.swift in Sources */,
 				FCBA935F21B852A200FC0022 /* ProductDetailViewController.swift in Sources */,
 				FCBA936921B8EB7200FC0022 /* ViewController+ErrorHandling.swift in Sources */,
 				FCEC3EB521BB94CE00026274 /* UILabel+BoldedSubstring.swift in Sources */,
+				FC0B9ED321C8BCDC00BBE36E /* UIBarButton+BadgeLayer.swift in Sources */,
 				FCDCD7B921C073C50094D821 /* ProductCollectionViewCell.swift in Sources */,
 				FC73515121B79B4100565919 /* ProductAisle.swift in Sources */,
+				FC0B9ED121C8B0A000BBE36E /* ProductCartTableViewCell.swift in Sources */,
 				FCBA935B21B8493700FC0022 /* ProductProvider.swift in Sources */,
 				FC0B9EC621C58F7F00BBE36E /* ProductSelectionCollectionViewController.swift in Sources */,
 				FC0B9EC821C5F80100BBE36E /* SelectedGroupsCollectionViewCell.swift in Sources */,
 				FC70DA3121B78B6700843F3F /* AppDelegate.swift in Sources */,
 				FC73514921B792D300565919 /* Product.swift in Sources */,
 				FCEC3EB921BB960400026274 /* ProductFavoritesManager.swift in Sources */,
+				FC0B9ED621C8BEA900BBE36E /* CartView.swift in Sources */,
 				FC73514D21B79A0E00565919 /* ProductGroup.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
