@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FC0B9EC621C58F7F00BBE36E /* ProductSelectionCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC0B9EC521C58F7F00BBE36E /* ProductSelectionCollectionViewController.swift */; };
+		FC0B9EC821C5F80100BBE36E /* SelectedGroupsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC0B9EC721C5F80100BBE36E /* SelectedGroupsCollectionViewCell.swift */; };
 		FC70DA3121B78B6700843F3F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC70DA3021B78B6700843F3F /* AppDelegate.swift */; };
 		FC70DA3621B78B6700843F3F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC70DA3421B78B6700843F3F /* Main.storyboard */; };
 		FC70DA3821B78B6900843F3F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC70DA3721B78B6900843F3F /* Assets.xcassets */; };
@@ -26,7 +28,6 @@
 		FCDCD7BD21C076D40094D821 /* ProductSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCDCD7BC21C076D40094D821 /* ProductSectionHeaderView.swift */; };
 		FCEC3EB521BB94CE00026274 /* UILabel+BoldedSubstring.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCEC3EB421BB94CE00026274 /* UILabel+BoldedSubstring.swift */; };
 		FCEC3EB921BB960400026274 /* ProductFavoritesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCEC3EB821BB960400026274 /* ProductFavoritesManager.swift */; };
-		FCEC3EC421BE3E9800026274 /* ProductTypeSelectionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCEC3EC321BE3E9800026274 /* ProductTypeSelectionTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FC0B9EC521C58F7F00BBE36E /* ProductSelectionCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductSelectionCollectionViewController.swift; sourceTree = "<group>"; };
+		FC0B9EC721C5F80100BBE36E /* SelectedGroupsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedGroupsCollectionViewCell.swift; sourceTree = "<group>"; };
 		FC70DA2D21B78B6700843F3F /* Wine-O-Matic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wine-O-Matic.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC70DA3021B78B6700843F3F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FC70DA3521B78B6700843F3F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -62,7 +65,6 @@
 		FCDCD7BC21C076D40094D821 /* ProductSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductSectionHeaderView.swift; sourceTree = "<group>"; };
 		FCEC3EB421BB94CE00026274 /* UILabel+BoldedSubstring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+BoldedSubstring.swift"; sourceTree = "<group>"; };
 		FCEC3EB821BB960400026274 /* ProductFavoritesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductFavoritesManager.swift; sourceTree = "<group>"; };
-		FCEC3EC321BE3E9800026274 /* ProductTypeSelectionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductTypeSelectionTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,6 +177,7 @@
 			children = (
 				FCDCD7B821C073C50094D821 /* ProductCollectionViewCell.swift */,
 				FCDCD7BC21C076D40094D821 /* ProductSectionHeaderView.swift */,
+				FC0B9EC721C5F80100BBE36E /* SelectedGroupsCollectionViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -219,7 +222,7 @@
 		FCEC3EBE21BE3C5200026274 /* Type Selection */ = {
 			isa = PBXGroup;
 			children = (
-				FCEC3EC321BE3E9800026274 /* ProductTypeSelectionTableViewController.swift */,
+				FC0B9EC521C58F7F00BBE36E /* ProductSelectionCollectionViewController.swift */,
 			);
 			path = "Type Selection";
 			sourceTree = "<group>";
@@ -327,7 +330,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FCEC3EC421BE3E9800026274 /* ProductTypeSelectionTableViewController.swift in Sources */,
 				FCDCD7BD21C076D40094D821 /* ProductSectionHeaderView.swift in Sources */,
 				FCBA935821B8465900FC0022 /* ProductAisleViewController.swift in Sources */,
 				FCBA935D21B8516700FC0022 /* ProductAsset.swift in Sources */,
@@ -337,6 +339,8 @@
 				FCDCD7B921C073C50094D821 /* ProductCollectionViewCell.swift in Sources */,
 				FC73515121B79B4100565919 /* ProductAisle.swift in Sources */,
 				FCBA935B21B8493700FC0022 /* ProductProvider.swift in Sources */,
+				FC0B9EC621C58F7F00BBE36E /* ProductSelectionCollectionViewController.swift in Sources */,
+				FC0B9EC821C5F80100BBE36E /* SelectedGroupsCollectionViewCell.swift in Sources */,
 				FC70DA3121B78B6700843F3F /* AppDelegate.swift in Sources */,
 				FC73514921B792D300565919 /* Product.swift in Sources */,
 				FCEC3EB921BB960400026274 /* ProductFavoritesManager.swift in Sources */,

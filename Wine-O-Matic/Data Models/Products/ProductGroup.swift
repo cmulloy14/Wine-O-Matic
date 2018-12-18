@@ -18,3 +18,14 @@ struct ProductGroup: Decodable {
         self.products = products
     }
 }
+
+extension ProductGroup: Hashable {
+    static func == (lhs: ProductGroup, rhs: ProductGroup) -> Bool {
+        return lhs.name == rhs.name
+    }
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(name)
+    }
+    
+}

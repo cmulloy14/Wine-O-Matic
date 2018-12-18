@@ -10,5 +10,6 @@ import UIKit
 
 class ProductSectionHeaderView: UICollectionReusableView {
     @IBOutlet weak var headerLabel: UILabel!
-    
+    @IBOutlet weak var leftStarIcon: UIImageView!
+    @IBOutlet weak var rightStarIcon: UIImageView!
 }
